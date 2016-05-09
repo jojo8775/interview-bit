@@ -5,31 +5,14 @@ import java.util.List;
 
 public class PrimeSum
 {
-	private List<Integer> findPrimes(int a){
-		List<Integer> primes = new ArrayList<Integer>();
-		for(int i=1; i<= a; i++){
-			if(isPrime(i)){
-				primes.add(i);
-			}
-		}
-		
-		int start=0, end=primes.size()-1;
-		
-		while(start < end){
-			int n1 = primes.get(start);
-			int n2 = primes.get(end);
-			
-			if(n1 + n2 == a){
+	public List<Integer> findPrime(int a ){
+		for(int i=2; i<=a/2; i++){
+			if(isPrime(i) && isPrime(a-i)){
 				List<Integer> result = new ArrayList<Integer>();
-				result.add(n1);
-				result.add(n2);
+				result.add(i);
+				result.add(a-i);
+				
 				return result;
-			}
-			else if (n1 + n2 < a){
-				start ++;
-			}
-			else {
-				end --;
 			}
 		}
 		
@@ -38,7 +21,7 @@ public class PrimeSum
 	
 	private boolean isPrime(int a){
 		for(int i=2; i<=Math.sqrt(a); i++){
-			if(a%i==0){
+			if(a%i == 0){
 				return false;
 			}
 		}
@@ -46,9 +29,8 @@ public class PrimeSum
 		return true;
 	}
 	
-	
 	public static void main(String[] args){
-		new PrimeSum().findPrimes(4);
+		List<Integer> r = new PrimeSum().findPrime(4);
+		System.out.println(r.size());
 	}
 }
-	

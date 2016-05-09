@@ -1,4 +1,4 @@
-package com.interview.intterviewbit.arrays;
+package com.interview.intterviewbit.math;
 
 import java.util.ArrayList;
 import java.util.List;
