@@ -1,5 +1,6 @@
 package com.interview.intterviewbit.string;
 
+//TODO: there is a nlogn way to do this.
 public class LongestSubStringPalindrom
 {
 	public int subString(String str){
