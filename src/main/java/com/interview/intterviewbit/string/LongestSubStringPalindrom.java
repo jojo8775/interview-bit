@@ -17,7 +17,12 @@ public class LongestSubStringPalindrom
 			int k = 0;
 			for(int j=i+1; j<grid.length; j++){
 				if(str.charAt(k) == str.charAt(j)){
-					grid[k][j] = 2 + grid[k+1][j-1];
+					if((j-1)-(k+1)+1 == grid[k+1][j-1]){
+						grid[k][j] = 2 + grid[k+1][j-1];
+					}
+					else{
+						grid[k][j] = Math.max(grid[k+1][j], grid[k][j-1]);
+					}
 				}
 				else{
 					grid[k][j] = Math.max(grid[k+1][j], grid[k][j-1]);
@@ -26,24 +31,16 @@ public class LongestSubStringPalindrom
 			}
 		}
 		
-		int i=0, j=grid.length - 1, beg = j, end = 0;
 		print(grid);
 		
-		while(grid[i][j] != 0){
-			System.out.println(grid[i][j]);
-			if(grid[i][j-1] == grid[i][j]){
-				j--;
-			}
-			else{
-				end = Math.max(end, j);
-				beg = Math.min(beg, j);
-				i++;
-				j--;
-			}
+		int i=0, j=0, max = grid[0][str.length()-1];
+		while(grid[0][j] < max){
+			j++;
 		}
+
+		i = j - max + 1;
 		
-		System.out.println(str.substring(beg, end+1));
-		
+		System.out.println(str.substring(i,j+1));
 		
 		return grid[0][str.length()-1];
 	}
@@ -59,8 +56,9 @@ public class LongestSubStringPalindrom
 	}
 	
 	public static void main(String[] args){
-		int r = new LongestSubStringPalindrom().subString("geeksskeeg");
+//		int r = new LongestSubStringPalindrom().subString("geeksskeeg");
 //		int r = new LongestSubStringPalindrom().subString("abb");
+		int r = new LongestSubStringPalindrom().subString("abacdfgdcaba");
 		System.out.println(r);
 	}
 }
