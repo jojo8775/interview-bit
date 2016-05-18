@@ -1,7 +1,5 @@
 package com.interview.intterviewbit.linkedlist;
 
-import com.interview.intterviewbit.linkedlist.DetectLoop.ListNode;
-
 public class RemoveNthNodeFromEnd
 {
 	public ListNode removeNthNode(ListNode n, int b){
