@@ -65,8 +65,8 @@ public class ThreeSumZero
 	public static void main(String[] args)
 	{
 //		List<List<Integer>> result = new ThreeSumZero().findSum(Arrays.asList(-1, 0, 1, 2, -1, -4));
-//		List<List<Integer>> result = new ThreeSumZero().findSum(Arrays.asList(1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3));
-		List<List<Integer>> result = new ThreeSumZero().findSum(Arrays.asList(-31013930, -31013930, 9784175, 21229755));
+		List<List<Integer>> result = new ThreeSumZero().findSum(Arrays.asList(1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3));
+//		List<List<Integer>> result = new ThreeSumZero().findSum(Arrays.asList(-31013930, -31013930, 9784175, 21229755));
 		
 		for(List<Integer> ll : result){
 			for(int i : ll){
