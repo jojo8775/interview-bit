@@ -34,10 +34,10 @@ public class CopyList
 		while(currentNode != null){
 			RandomListNode temp = currentNode.next;
 			currentNode.next = temp.next;
+			currentNode = currentNode.next;
 			if(temp.next != null){
 				temp.next = currentNode.next;
 			}
-			currentNode = currentNode.next;
 		}
 		
 		return copyHead;
