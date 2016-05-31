@@ -3,14 +3,7 @@ package com.interview.intterviewbit.dynamicprogram;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Given a 2 * N Grid of numbers, choose numbers such that the sum of the
- * numbers is maximum and no two chosen numbers are adjacent horizontally,
- * vertically or diagonally, and return it.
- * 
- * @author jojo
- *
- */
+
 public class MinimumJumps
 {
 	public int minJumps(List<Integer> nums)
