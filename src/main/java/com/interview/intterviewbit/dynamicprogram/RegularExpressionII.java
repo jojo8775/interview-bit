@@ -1,7 +1,7 @@
 package com.interview.intterviewbit.dynamicprogram;
 
 /**
- * mplement regular expression matching with support for '.' and '*'.
+ * implement regular expression matching with support for '.' and '*'.
  * 
  * '.' Matches any single character. '*' Matches zero or more of the preceding
  * element.
