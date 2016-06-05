@@ -13,29 +13,35 @@ public class MaxAreaHistogram
 	    
 	    Stack<Integer> stack = new Stack<Integer>();
 	    
-	    for(int i=0;i<a.size();i++){
-	    	if(stack.isEmpty() || a.get(stack.peek()) <= a.get(i)){
-	    		stack.push(i);
+	    int idx = a.size();
+	    while(idx <a.size()){
+	    	if(stack.isEmpty() || a.get(stack.peek()) <= a.get(idx)){
+	    		stack.push(idx++);
 	    	}
 	    	else{
-	    		while(!stack.isEmpty() && a.get(stack.peek()) > a.get(i)){
-	    			int storedIndex = stack.pop();
-	    			tempArea = a.get(storedIndex) * (i-storedIndex - 1);
-	    			if(tempArea > maxArea){
-	    				maxArea = tempArea;
-	    			}
-	    		}
-	    		stack.push(i);
+    			int storedIndex = stack.pop();
+    			
+    			if(stack.isEmpty()){
+    				tempArea = a.get(storedIndex) * idx;
+    			}
+    			else{
+    				tempArea = a.get(storedIndex) * (idx - storedIndex - 1);
+    			}
+    			
+    			maxArea = Math.max(maxArea, tempArea);
 	    	}
 	    }
 	    
-	    int idx = a.size();
 	    while(!stack.isEmpty()){
 	    	int storedIndex = stack.pop();
-			tempArea = a.get(storedIndex) * (idx-storedIndex - 1);
-			if(tempArea > maxArea){
-				maxArea = tempArea;
-			}
+	    	if(stack.isEmpty()){
+	    		tempArea = a.get(storedIndex) * idx;
+	    	}
+	    	else{
+	    		tempArea = a.get(storedIndex) * (idx - storedIndex - 1);
+	    	}
+	    	
+	    	maxArea = Math.max(tempArea, maxArea);
 	    }
 	    
 	    return maxArea;
