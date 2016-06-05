@@ -48,13 +48,90 @@ public class RegularExpressionII
 			return false;
 		}
 	}
-
+	
+	public boolean solDP(String s, String p){
+		
+		boolean[][] grid = new boolean[s.length() + 1][p.length() + 1];
+		grid[0][0] = true;
+		
+		//zeroth row 
+		for(int i=1; i<grid[0].length; i++){
+			if(p.charAt(i-1) == '*'){
+				grid[0][i] = grid[0][i-2];
+				grid[0][i-1] = grid[0][i-2];
+			}
+			else if(p.charAt(i-1) == ' '){
+				grid[0][i] = grid[0][i-1];
+			}
+		}
+		
+		//zeroth col 
+		for(int i=1; i<grid.length; i++){
+			if(s.charAt(i-1) == '*'){
+				grid[i][0] = grid[i-2][0];
+				grid[i-1][0] = grid[i-2][0];
+			}
+			else if(s.charAt(i-1) == ' '){
+				grid[i][0] = grid[i-1][0];
+			}
+		}
+		
+		for(int i=1; i<=p.length(); i++){
+			char ch = p.charAt(i-1);
+			// when ch == '*'
+			if(ch == '*'){
+				// copy data assuming * represents empty seq
+				for(int j=1; j<grid.length; j++){
+					grid[j][i] = grid[j][i-2];
+				}
+				
+				// if * contributes to matching 
+				for(int j=1; j<grid.length; j++){
+					if(p.charAt(i-2) == '.' || s.charAt(j-1) == p.charAt(i-2)){
+						grid[j][i] = grid[j][i] || grid[j-1][i-2] || grid[j-1][i];
+					}
+				}
+			}
+			
+			// when ch == '.'
+			else if(ch == '.'){
+				for(int j=1; j<=s.length(); j++){
+					grid[j][i] = grid[j-1][i-1];
+				}
+			}
+			
+			else{
+				for(int j=1; j<=s.length(); j++){
+					if(s.charAt(j-1) == ch){
+						grid[j][i] = grid[j-1][i-1]; 
+					}
+				}
+			}
+		}
+		
+		print(grid);
+		
+		return grid[s.length()][p.length()];
+	}
+	
+	private static void print(boolean[][] B){
+		for(int i=0; i<B.length; i++){
+			for(int j=0; j<B[0].length; j++){
+				System.out.print((B[i][j] ? "T" : "F") + ", ");
+			}
+			
+			System.out.println();
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		// int r = new RegularExpression().isMatch("ab*c", "abc");
 		// int r = new RegularExpression().isMatch("a", ".");
 		// int r = new RegularExpression().isMatch("a.*", "ac");
-		boolean r = new RegularExpressionII().isMatch("ac", "ab*c");
+//		boolean r = new RegularExpressionII().isMatch("ac", "ab*c");
+		
+		boolean r = new RegularExpressionII().solDP("aab", "c*a*b");
 		System.out.println(r);
 	}
 }

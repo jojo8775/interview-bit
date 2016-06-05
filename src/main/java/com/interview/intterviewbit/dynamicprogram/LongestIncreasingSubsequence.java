@@ -50,4 +50,48 @@ public class LongestIncreasingSubsequence
 
 		return maxLength;
 	}
+
+	// recursive sol
+	private int max_ref = 1;
+
+	public int rec(int arr[], int n)
+	{
+		// base case
+		if (n == 1)
+			return 1;
+
+		// 'max_ending_here' is length of LIS ending with arr[n-1]
+		int res, max_ending_here = 1;
+
+		/*
+		 * Recursively get all LIS ending with arr[0], arr[1] ... arr[n-2]. If
+		 * arr[i-1] is smaller than arr[n-1], and max ending with arr[n-1] needs
+		 * to be updated, then update it
+		 */
+		for (int i = 1; i < n; i++)
+		{
+			System.out.println("i == " + i + " arr[i] == " + arr[i]);
+			System.out.println("i-1 == " + (i - 1) + " arr[i-1] == " + arr[i - 1]);
+			System.out.println("n == " + n + " arr[n-1] == " + arr[n - 1]);
+			System.out.println("--------------------------------------");
+			res = rec(arr, i);
+			if (arr[i - 1] < arr[n - 1] && res + 1 > max_ending_here)
+				max_ending_here = res + 1;
+		}
+
+		// Compare max_ending_here with the overall max. And
+		// update the overall max if needed
+		if (max_ref < max_ending_here)
+			max_ref = max_ending_here;
+
+		// Return length of LIS ending with arr[n-1]
+		return max_ending_here;
+	}
+
+	
+	public static void main(String[] args){
+		int[] arr = {5,1,3,2,4};
+		int  r = new LongestIncreasingSubsequence().rec(arr, 5);
+		System.out.println(r);
+	}
 }
