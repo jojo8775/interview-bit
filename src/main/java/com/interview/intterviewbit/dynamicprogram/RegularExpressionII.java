@@ -24,6 +24,7 @@ public class RegularExpressionII
 {
 	public boolean isMatch(String s, String p)
 	{
+		System.out.println("S: " + s + " P: " + p);
 		if (p.length() == 0)
 			return s.length() == 0;
 
@@ -54,7 +55,7 @@ public class RegularExpressionII
 		// int r = new RegularExpression().isMatch("ab*c", "abc");
 		// int r = new RegularExpression().isMatch("a", ".");
 		// int r = new RegularExpression().isMatch("a.*", "ac");
-		boolean r = new RegularExpressionII().isMatch("ac", "ab*c");
+		boolean r = new RegularExpressionII().isMatch("abbbc", "ab*d*c");
 		System.out.println(r);
 	}
 }
