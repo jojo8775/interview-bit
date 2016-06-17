@@ -1,6 +1,8 @@
 package com.interview.intterviewbit.greedy;
 
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Given an array of integers, return the highest product possible by
