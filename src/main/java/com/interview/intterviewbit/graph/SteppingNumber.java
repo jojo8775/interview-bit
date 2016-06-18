@@ -1,4 +1,4 @@
-package com.interview.intterviewbit.greedy;
+package com.interview.intterviewbit.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
