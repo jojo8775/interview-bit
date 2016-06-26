@@ -1,5 +1,20 @@
 package com.interview.intterviewbit.string;
 
+/**
+ * Given an integer, convert it to a roman numeral, and return a string corresponding to its roman numeral version
+
+Input is guaranteed to be within the range from 1 to 3999.
+
+Example :
+
+Input : 5
+Return : "V"
+
+Input : 14
+Return : "XIV"
+ * @author jojo
+ *
+ */
 public class IntegerToRoman
 {
 	public String convertToRoman(int num){
@@ -26,6 +41,8 @@ public class IntegerToRoman
 	}
 	
 	public static void main(String[] args){
-		System.out.println(new IntegerToRoman().convertToRoman(3));
+//		System.out.println(new IntegerToRoman().convertToRoman(3));
+		System.out.println(new IntegerToRoman().convertToRoman(1));
 	}
 }
+
