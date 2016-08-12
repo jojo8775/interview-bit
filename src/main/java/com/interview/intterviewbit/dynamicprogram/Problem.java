@@ -9,51 +9,40 @@ import java.util.Set;
  * contains any two elements summing to 42. Return False otherwise.
  */
 public class Problem {
-	public boolean findNumber(int[] arr, int target) {
-		// base case
-		if (arr == null || arr.length < 2) {
-			return false;
-		}
+	private static final int TARGET = 42;
 
+	public boolean findNumber(int[] arr) {
 		Set<Integer> set = new HashSet<Integer>();
 		for (int i : arr) {
-			int numToLook = 0;
-			if (i <= target) {
-				numToLook = target - i;
-			} else {
-				numToLook = i - target;
-			}
+			int numToLook = TARGET - i;
 
 			// checking if pair exist.
 			if (set.contains(numToLook)) {
 				return true;
 			}
 
-			set.add(i);
+			set.add(numToLook);
 		}
 
 		// could not find a pair
 		return false;
 	}
 
+	// Helper function to run test case. 
 	public static void main(String[] args) {
 		Problem prob = new Problem();
 
-		// testing number found
-		System.out.println(prob.findNumber(new int[] { Integer.MAX_VALUE, Integer.MIN_VALUE, 42, -1, 0, 1 }, 42));
+		// Testing use case when negative number is required to make 42
+		System.out.println(prob.findNumber(new int[] { 46, -4 }));
 
-		// testing MAX_VAL lookup
-		System.out.println(
-				prob.findNumber(new int[] { Integer.MAX_VALUE, Integer.MIN_VALUE, 42, -1, 0, 1 }, Integer.MIN_VALUE));
+		// Testing use case when positive number is required to make 42
+		System.out.println(prob.findNumber(new int[] { -4, 46 }));
 
-		// testing MIN_VAL lookup
-		System.out.println(
-				prob.findNumber(new int[] { Integer.MAX_VALUE, Integer.MIN_VALUE, 42, -1, 0, 1 }, Integer.MIN_VALUE));
-
-		// testing number not found
-		System.out.println(prob.findNumber(new int[] { Integer.MAX_VALUE, Integer.MIN_VALUE, 42, -1, 0, 1 }, 45));
+		// Testing integer overflow when INT_MAX and INT_MIN value is present
+		System.out.println(prob.findNumber(new int[] { -4, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE,
+				Integer.MIN_VALUE, Integer.MIN_VALUE, 46 }));
 		
-		// testing null input
-		System.out.println(prob.findNumber(null, 45));
+		// Testing use case when target cannot be found;
+		System.out.println(prob.findNumber(new int[] { -4}));
 	}
 }
