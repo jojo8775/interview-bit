@@ -21,7 +21,7 @@ public class Problem {
 				return true;
 			}
 
-			set.add(numToLook);
+			set.add(i);
 		}
 
 		// could not find a pair
