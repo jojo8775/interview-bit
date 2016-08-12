@@ -10,19 +10,14 @@ import java.util.Set;
  */
 public class Problem {
 	public boolean findNumber(int[] arr, int target) {
-		// base case
-		if (arr == null || arr.length < 2) {
-			return false;
-		}
-
 		Set<Integer> set = new HashSet<Integer>();
 		for (int i : arr) {
-			int numToLook = 0;
-			if (i <= target) {
-				numToLook = target - i;
-			} else {
-				numToLook = i - target;
-			}
+			int numToLook = target - i;
+			// if (i <= target) {
+			// 	numToLook = target - i;
+			// } else {
+			// 	numToLook = i - target;
+			// }
 
 			// checking if pair exist.
 			if (set.contains(numToLook)) {
