@@ -1,28 +1,31 @@
 package com.interview.intterviewbit.string;
 
-public class RomanToInteger
-{
-	public int convertToInteger(String s)
-	{
-		int i=s.length() - 1, result = 0, cur = 0, prev = 0;
-		while(i>=0){
-			cur = findNumber(s.charAt(i--)); 
-			if(prev > cur){
+/**
+ * Given a roman numeral, convert it to an integer.
+ * 
+ * Input is guaranteed to be within the range from 1 to 3999.
+ * 
+ * @author jojo
+ *
+ */
+public class RomanToInteger {
+	public int convertToInteger(String s) {
+		int i = s.length() - 1, result = 0, cur = 0, prev = 0;
+		while (i >= 0) {
+			cur = findNumber(s.charAt(i--));
+			if (prev > cur) {
 				result -= cur;
-			}
-			else{
+			} else {
 				result += cur;
 			}
 			prev = cur;
 		}
-		
+
 		return result;
 	}
 
-	private int findNumber(char ch)
-	{
-		switch (ch)
-		{
+	private int findNumber(char ch) {
+		switch (ch) {
 		case 'I':
 			return 1;
 		case 'V':
