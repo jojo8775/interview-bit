@@ -18,6 +18,8 @@ public class LRU
 			Node node = map.get(key);
 			remove(node);
 			setHead(node);
+			
+			return node.val;
 		}
 		
 		return -1;
@@ -82,5 +84,12 @@ public class LRU
 			this.val = val;
 			this.key = key;
 		}
+	}
+	
+	public static void main(String[] args){
+		LRU lru = new LRU(1);
+		lru.set(2, 1);
+		
+		System.out.println(lru.get(2));
 	}
 }

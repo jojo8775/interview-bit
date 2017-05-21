@@ -13,7 +13,7 @@ public class PalindromPartisionII
 	
 	private void partision(String s, int start, List<String> p, List<List<String>> result){
 		if(start == s.length()){
-			List<String> rr = new ArrayList<>(p);
+			List<String> rr = new ArrayList<String>(p);
 			result.add(rr);
 			return;
 		}
