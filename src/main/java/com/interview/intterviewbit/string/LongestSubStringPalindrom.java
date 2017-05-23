@@ -56,10 +56,60 @@ public class LongestSubStringPalindrom
 		}
 	}
 	
+	public String longestPalindrome(String a) {
+        if(a.isEmpty() || allCharacterSame(a)){
+            return a;
+        }
+
+        int[][] dp = new int[a.length()][a.length()];
+        
+        for(int i=0; i<a.length(); i++){
+            dp[i][i] = 1;
+        }
+            
+        String result = a.substring(0,1);
+        
+        for(int i=1; i<dp.length; i++){
+            for(int j=0; j+i < dp.length; j++){
+                int k = j+i;
+                if(a.charAt(j) == a.charAt(k)){
+                    if((k-1) - (j+1) + 1 == dp[j+1][k-1]){
+                        dp[j][k] = 2 + dp[j+1][k-1];
+                        if(result.length() < i + 1){
+                            result = a.substring(j, k+1);
+                        }
+                    }
+                    else{
+                        dp[j][k] = Math.max(dp[j+1][k], dp[j][k-1]);
+                    }
+                }
+                else{
+                    dp[j][k] = Math.max(dp[j+1][k], dp[j][k-1]);
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    private boolean allCharacterSame(String str){
+        for(int i=1; i<str.length(); i++){
+            if(str.charAt(i-1) != str.charAt(i)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+	
 	public static void main(String[] args){
 //		int r = new LongestSubStringPalindrom().subString("geeksskeeg");
 //		int r = new LongestSubStringPalindrom().subString("abb");
-		int r = new LongestSubStringPalindrom().subString("abacdfgdcaba");
-		System.out.println(r);
+//		int r = new LongestSubStringPalindrom().subString("abacdfgdcaba");
+//		System.out.println(r);
+		System.out.println(new LongestSubStringPalindrom().longestPalindrome("abacdfgdcaba"));
+	    
+	    
+	    System.out.println(new LongestSubStringPalindrom().longestPalindrome("abb"));
 	}
 }

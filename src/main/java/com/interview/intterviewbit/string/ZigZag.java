@@ -36,8 +36,40 @@ public class ZigZag
 	    return result.toString();
 	}
 	
+	public String findZigZag(String str, int rows){
+	    if(rows == 1){
+	        return str;
+	    }
+
+	    StringBuilder[] sbArr = new StringBuilder[rows];
+	    for(int i=0; i<sbArr.length; i++){
+	        sbArr[i] = new StringBuilder();
+	    }
+	    
+	    int count = 0, offset = 1;
+	    for(int i=0; i<str.length(); i++){
+	        sbArr[count].append(str.charAt(i));
+	        count += offset;
+	        if(count < 0){
+	            count+=2;
+	            offset *= -1;
+	        }
+	        else if(count == rows){
+	            count -= 2;
+	            offset *= -1;
+	        }
+	    }
+	    
+	    StringBuilder result = new StringBuilder();
+	    for(StringBuilder sb : sbArr){
+	        result.append(sb.toString());
+	    }
+	    
+	    return result.toString();
+	}
+	
 	public static void main(String[] args){
-		String r = new ZigZag().zigzag("abcdefghij", 4);
-		System.out.println(r);
+		System.out.println(new ZigZag().zigzag("abcdefghij", 4));
+		System.out.println(new ZigZag().findZigZag("abcdefghij", 4));
 	}
 }
